@@ -1,0 +1,248 @@
+; New Polybar config
+; DP and HDMI bar
+; 2021-10-05
+; 20repsej
+
+[colors]
+
+background     = #1c1e26
+foreground     = #1c1e26
+
+[bar/DP]
+wm-restack = bspwm
+;Position 
+monitor = HDMI-0 
+bottom = false
+
+fixed-center = true
+
+; Size
+offset-x = 40%
+offset-y = 10
+height = 26 
+width = 20%
+padding-right = 1
+padding-left = 1
+radius = 6
+; border-size = 3
+; border-color = ${colors.background}
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = "Fira Mono:style=Regular:pixelsize=17;3"
+font-1 = "FontAwesome:style=SemiBold Italic,Italic:pixelsize=17;3"
+font-2 = "NotoSans Nerd Font Mono:style=SemiBold Italic,Italic:pixelsize=17;3"
+
+modules-left = 
+modules-right = 
+modules-center = bspwm
+
+module-margin-left = 1
+module-margin-right = 1
+
+
+[bar/HDMI]
+wm-restack = bspwm
+; Position
+monitor = DVI-D-0 
+bottom = false
+
+fixed-center = true
+
+; Size
+offset-x = 40%
+offset-y = 10
+height = 26
+width = 20%
+padding-right = 1
+padding-left = 1
+radius = 6
+; border-size = 3
+; border-color = ${colors.background}
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = "Fira Mono:style=Regular:pixelsize=17;3"
+font-1 = "FontAwesome:style=SemiBold Italic,Italic:pixelsize=17;3"
+font-2 = "NotoSans Nerd Font Mono:style=SemiBold Italic,Italic:pixelsize=17;3"
+
+
+;modules-left = pulseaudio updates-pacman-aurhelper wired-network
+;modules-right = memory cpu temperature date
+modules-center = bspwm
+
+;tray-position = right
+;tray-detatched = false
+
+module-margin-left = 1
+module-margin-right = 1
+
+[bar/HDMIRIGHT]
+wm-restack = bspwm
+; Position
+monitor = DVI-D-0 
+bottom = false
+
+fixed-center = true
+
+; Size
+offset-x = 63%
+offset-y = 10
+height = 26
+width = 35%
+padding-right = 1
+padding-left = 1
+radius = 6
+; border-size = 3
+; border-color = ${colors.background}
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = "Fira Mono:style=Regular:pixelsize=17;3"
+font-1 = "FontAwesome:style=SemiBold Italic,Italic:pixelsize=17;3"
+font-2 = "NotoSans Nerd Font Mono:style=SemiBold Italic,Italic:pixelsize=17;3"
+
+
+modules-center = memory cpu temperature date
+
+tray-position = right
+tray-detatched = false
+
+module-margin-left = 1
+module-margin-right = 1
+
+
+[bar/HDMILEFT]
+wm-restack = bspwm
+; Position
+monitor = DVI-D-0 
+bottom = false
+
+fixed-center = true
+
+; Size
+offset-x = 2%
+offset-y = 10
+height = 26
+width = 23%
+padding-right = 1
+padding-left = 1
+radius = 6
+; border-size = 3
+; border-color = ${colors.background}
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = "Fira Mono:style=Regular:pixelsize=17;3"
+font-1 = "FontAwesome:style=SemiBold Italic,Italic:pixelsize=17;3"
+font-2 = "NotoSans Nerd Font Mono:style=SemiBold Italic,Italic:pixelsize=17;3"
+
+
+modules-center = pulseaudio updates-pacman-aurhelper wired-network
+
+module-margin-left = 1
+module-margin-right = 1
+
+
+[module/bspwm]
+type                      = internal/bspwm
+label-focused             = 
+label-focused-padding     = 2
+label-focused-foreground  = #b877db
+label-occupied            = 
+label-occupied-padding    = 2
+label-occupied-foreground = #21bfc2
+label-urgent              = 
+label-urgent-padding      = 2
+label-urgent-foreground   = #f43e5c
+label-empty               = 
+label-empty-padding       = 2
+label-empty-foreground    = #6c6f93
+pin-workspaces = true
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume =<label-volume>
+label-muted =  
+label-volume = %percentage%%
+label-volume-background = #21bfc2
+label-muted-background = #21bfc2
+label-muted-padding = 1
+label-volume-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format =<label>
+label = %percentage%%
+label-background = #09f7a0
+label-padding = 1
+
+[module/memory]
+type = internal/memory
+interval = 3
+format =<label>
+label = %gb_used%
+label-background = #b877db
+label-padding = 1
+
+[module/date]
+type = internal/date
+label = %date% %time%
+interval = 1.0
+date = %Y-%m-%d
+time = %H:%M
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+format =<label>
+label-background = #27d796
+label-padding = 1
+
+[module/wired-network]
+type = internal/network
+interface = eno1
+label-connected =  %local_ip%
+label-disconnected =  %local_ip%
+label-connected-background = #e95678
+label-connected-padding = 1
+label-disconnected-background = #e95678
+label-disconnected-padding = 1
+label-disconnected-underline = #f00
+
+[module/temperature]
+type = internal/temperature
+interval = 0.5
+thermal-zone = 0
+base-temperature = 20
+warn-temperature = 70
+format =<label>
+label = %temperature-c%
+label-background = #25b0bc
+label-warn-background = #25b0bc
+label-padding = 1
+label-warn-padding = 1
+label-warn = %temperature-c%
+label-warn-foreground = #f00
+
+[module/updates-pacman-aurhelper]
+type = custom/script
+exec = $HOME/.config/polybar/modules/calendar.sh
+interval = 6000
+format = <label>
+label-background = #27d796
+label-padding = 1
+
+; vim: set ft=dosini nomodeline:
+
+[module/kdeconnect]  
+type = custom/script  
+exec = "$HOME/.config/polybar/modules/polybar-kdeconnect/polybar-kdeconnect.sh -d"  
+tail = true
+format = <label>
+label-background = #25b0bc
+label-padding = 1
